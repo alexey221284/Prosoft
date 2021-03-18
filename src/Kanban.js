@@ -2,17 +2,10 @@ import React from "react";
 import { DragDropContext, DropTarget, DragSource } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import update from "immutability-helper";
-
-const tasks = [
-	{ _id: 1, title: "Прочитать книгу", startDate: 12.06, endDate: 12.06, executor: "Иванов И. В.", status: "backlog" },
-	{ _id: 2, title: "Прочитать книгу", startDate: 12.06, endDate: 12.06, executor: "Иванов И. В.", status: "backlog" },
-	{ _id: 3, title: "Прочитать книгу", startDate: 12.06, endDate: 12.06, executor: "Иванов И. В.", status: "wip" },
-	{ _id: 4, title: "Прочитать книгу", startDate: 12.06, endDate: 12.06, executor: "Иванов И. В.", status: "wip" },
-	{ _id: 5, title: "Прочитать книгу", startDate: 12.06, endDate: 12.06, executor: "Иванов И. В.", status: "done" },
-	{ _id: 6, title: "Прочитать книгу", startDate: 12.06, endDate: 12.06, executor: "Иванов И. В.", status: "done" },
-];
+import {defaultState} from "./store/cardsReducer";
 
 const channels = ["backlog", "wip", "done"];
+
 const labelsMap = {
 	backlog: "Сделать",
 	wip: "В процессе",
@@ -52,18 +45,18 @@ class Kanban extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			tasks
+			defaultState
 		};
 	}
 	update = (id, status) => {
-		const { tasks } = this.state;
-		const task = tasks.find(task => task._id === id);
+		const { defaultState } = this.state;
+		const task = defaultState.find(task => task._id === id);
 		task.status = status;
-		const taskIndex = tasks.indexOf(task);
-		const newTasks = update(tasks, {
+		const taskIndex = defaultState.indexOf(task);
+		const newTasks = update(defaultState, {
 			[taskIndex]: { $set: task }
 		});
-		this.setState({ tasks: newTasks });
+		this.setState({ defaultState: newTasks });
 	};
 
 	render() {
@@ -77,7 +70,7 @@ class Kanban extends React.Component {
 							<div style={classes.column}>
 								<div style={classes.columnHead}>{labelsMap[channel]}</div>
 								<div>
-									{tasks
+									{defaultState
 										.filter(item => item.status === channel)
 										.map(item => (
 											<KanbanItem id={item._id} onDrop={this.update}>
