@@ -1,0 +1,25 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    margin: auto;
+}
+
+.header h1 {
+    margin-left: 10px;
+}
+
+.gridButton, .tableButton {
+    background: white;
+    border: none;
+    margin-top: 30px;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+}
+
+.gridButton:hover, .tableButton:hover {
+    background: white;
+    border: none;
+}

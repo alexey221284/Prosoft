@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/more</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons/more" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="bounds" fill-opacity="0.338428442" fill="#1C8FF8" opacity="0" x="0" y="0" width="24" height="24"></rect>
+        <g id="more-vertical" transform="translate(12.000000, 12.250000) rotate(-270.000000) translate(-12.000000, -12.250000) translate(10.500000, 4.500000)" fill="#767F85">
+            <ellipse id="Oval" cx="1.5" cy="7.75" rx="1.5" ry="1.55"></ellipse>
+            <ellipse id="Oval" cx="1.5" cy="1.55" rx="1.5" ry="1.55"></ellipse>
+            <ellipse id="Oval" cx="1.5" cy="13.95" rx="1.5" ry="1.55"></ellipse>
+        </g>
+    </g>
+</svg>
