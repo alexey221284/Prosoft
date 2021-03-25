@@ -4,7 +4,7 @@ import Kanban from "./Kanban";
 import {Provider} from "react-redux";
 import {store} from "./store";
 import Header from "./Header";
-import Ulbi from "./Ulbi";
+import Ulbi from "./App";
 
 
 ReactDOM.render(

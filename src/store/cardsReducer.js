@@ -51,6 +51,8 @@
 	]
 }*/
 
+import {useSelector} from "react-redux";
+
 export const defaultState2 = {
 	card2: [
 		{id: 1, title: "Сделать", items: [
@@ -75,7 +77,14 @@ const ADD_CARD_DONE = "ADD_CARD_BACKLOG"
 export const cardsReducer = (state = defaultState2, action) => {
 	switch (action.type) {
 		case "ADD_CARD_BACKLOG":
-			return {card2: [...state.card2, action.payload]}
+			//return {card2: [...state.card2, action.payload]} работает но криво
+			return {
+				card2: [
+					{id:1, title: "Сделать", items: [...state.card2[0].items, action.payload]},
+					state.card2[1],
+					state.card2[2],
+				]
+			}
 		case "ADD_CARD_WIP":
 			return {...state, cards: state.cards}
 		case "ADD_CARD_DONE":

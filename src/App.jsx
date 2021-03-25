@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
-import './ulbi.css'
-import {defaultState2} from "./store/cardsReducer";
+import './app.css'
+import "./buttonBlock.css"
+import {addCardsBacklogAction, addCardsDoneAction, addCardsWipAction, defaultState2} from "./store/cardsReducer";
 import ButtonBlock from "./ButtonBlock";
+import {useDispatch, useSelector} from "react-redux";
+import plus from "./img/icons/plus/black.svg";
 
-const Ulbi = () => {
+const App = () => {
 
 	const [boards, setBoards] = useState(defaultState2.card2)
 
@@ -12,7 +15,7 @@ const Ulbi = () => {
 
 	function dragOverHandler(e) {
 		e.preventDefault()
-		if (e.target.className == 'item') {
+		if (e.target.className === 'item') {
 			e.target.style.boxShadow = '0 4px 3px gray'
 		}
 	}
@@ -64,9 +67,61 @@ const Ulbi = () => {
 		e.target.style.boxShadow = 'none'
 	}
 
+	const dispatch = useDispatch()
+	const cards = useSelector(state => state.cardsReducer)
+	console.log(cards)
+
+	const addCardBacklog = () => {
+		const cardBacklog =	{
+			id: 7,
+			title: prompt("Введите название задачи"),
+			startDate: 12.06,
+			endDate: 12.06,
+			executor: "Иванов И. В."}
+
+		dispatch(addCardsBacklogAction(cardBacklog));
+		setBoards(cards.card2);
+	}
+
+	const addCardWip = () => {
+		const cardWip = {
+			id: 8,
+			title: prompt("введите название задачи"),
+			startDate: 19.03,
+			endDate: 19.03,
+			executor: "Жумаев А.А."
+		}
+		dispatch(addCardsWipAction(cardWip))
+	}
+
+	const addCardDone = () => {
+		const cardDone = {
+			id: 9,
+			title: prompt("введи название задачи"),
+			startDate: 19.03,
+			endDate: 19.03,
+			executor: "Жумаев А.А."
+		}
+		dispatch(addCardsDoneAction(cardDone))
+	}
+
 	return (
 		<div>
-		<ButtonBlock />
+			<div className={"buttonBlock"}>
+				<div>
+					<h3>Сделать</h3>
+					<button onClick={() => addCardBacklog()}><img src={plus}/></button>
+				</div>
+				<div>
+					<h3>В процессе</h3>
+					<button onClick={() => addCardWip()}><img src={plus}/></button>
+				</div>
+				<div>
+					<h3>Сделано</h3>
+					<button onClick={() => addCardDone()}><img src={plus}/></button>
+				</div>
+			</div>
+		{/*<ButtonBlock />*/}
 		<div className={'app'}>
 			{boards.map(board =>
 				<div
@@ -100,4 +155,4 @@ const Ulbi = () => {
 	)
 }
 
-export default Ulbi
+export default App
